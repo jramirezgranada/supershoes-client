@@ -34,6 +34,11 @@ export default new Router({
       component: () => import('./views/Articles.vue')
     },
     {
+      path: '/articles/create',
+      name: 'create-article',
+      component: () => import('./views/CreateArticle.vue')
+    },
+    {
       path: '/store/:storeId',
       name: 'store-detail',
       component: () => import('./views/StoreDetail.vue')
