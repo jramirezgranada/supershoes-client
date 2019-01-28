@@ -1,5 +1,7 @@
 <template>
   <div class="stores">
+    <router-link :to="{name: 'create-store'}" class="btn btn-success">Create Store</router-link>
+    <div style="margin: 15px"></div>
     <StoresComponent msg="Welcome to SuperShoes Store"/>
   </div>
 </template>
