@@ -1,6 +1,20 @@
 <template>
     <div class="row">
         <div class="col-md-6 offset-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" v-if="successfulAlert">
+                <strong>Store Created successfully.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div v-if="showErrors">
+                <div class="alert alert-danger alert-close alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p v-for="error in errors">{{ error[0] }}</p>
+                </div>
+            </div>
             <h3>Create New Store</h3>
             <hr>
             <form @submit.prevent="store()">
@@ -12,7 +26,7 @@
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" placeholder="Address" name="address" v-model="address">
                 </div>
-                <button type="submit" class="btn btn-primary" @click="store">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
@@ -27,23 +41,35 @@
             return {
                 name: '',
                 address: '',
-                createStoreUrl: 'http://supershoes.test/services/stores/create'
+                createStoreUrl: 'http://supershoes.test/services/stores/create',
+                successfulAlert: false,
+                showErrors: false,
+                errors: []
             }
         },
         methods: {
             store(){
+                this.showErrors = false
                 let data = {
                     'name': this.name,
                     'address': this.address
                 };
 
                 let headers = {
-                    'headers':  {'Accept' : 'application/json'}
+                    'headers':  {'Content-Type' : 'application/json', 'Accept': 'application/json'}
                 };
 
                 axios.post(this.createStoreUrl, data, headers)
                     .then(response => {
                         console.log(response)
+                        this.successfulAlert = true
+                        this.name = ''
+                        this.address = ''
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.errors)
+                        this.showErrors = true
+                        this.errors = error.response.data.errors
                     })
             }
         }
