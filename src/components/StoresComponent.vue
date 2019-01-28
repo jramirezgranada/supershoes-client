@@ -14,7 +14,10 @@
         <th scope="row">{{ store.id }}</th>
         <td>{{ store.name }}</td>
         <td>{{ store.address }}</td>
-        <td><router-link :to="{name: 'articles-store', params: {storeId: store.id}}" class="p-2 text-dark">View Articles</router-link></td>
+        <td>
+          <router-link :to="{name: 'store-detail', params: {storeId: store.id}}" class="p-2 text-dark">Detail</router-link> |
+          <router-link :to="{name: 'articles-store', params: {storeId: store.id}}" class="p-2 text-dark">Articles</router-link>
+        </td>
       </tr>
       </tbody>
     </table>

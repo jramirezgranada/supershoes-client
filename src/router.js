@@ -14,19 +14,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
       path: '/articles/store/:storeId',
       name: 'articles-store',
-      component: () => import(/* webpackChunkName: "about" */ './views/ArticlesStore.vue')
+      component: () => import('./views/ArticlesStore.vue')
     },
     {
       path: '/articles',
       name: 'all-articles',
-      component: () => import(/* webpackChunkName: "about" */ './views/Articles.vue')
+      component: () => import('./views/Articles.vue')
+    },
+    {
+      path: '/store/:storeId',
+      name: 'store-detail',
+      component: () => import('./views/StoreDetail.vue')
     }
   ]
 })

@@ -9,7 +9,7 @@
     import ArticlesComponent from '@/components/ArticlesComponent.vue'
 
     export default {
-        name: 'home',
+        name: 'articles-list',
         components: {
             ArticlesComponent
         }
