@@ -2,7 +2,8 @@
     <div>
         <div class="card">
             <div class="card-header">
-                {{store.name}}
+                {{store.name}} |
+                <router-link :to="{name: 'edit-store', params:{storeId: store.id}}" class="btn btn-success btn-sm">Edit Store</router-link>
             </div>
             <div class="card-body">
                 <h5 class="card-title">Address</h5>
