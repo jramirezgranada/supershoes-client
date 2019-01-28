@@ -11,6 +11,11 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      component: () => import('./views/Welcome.vue')
+    },
+    {
+      path: '/stores',
+      name: 'stores',
       component: Home
     },
     {
@@ -27,6 +32,16 @@ export default new Router({
       path: '/store/:storeId',
       name: 'store-detail',
       component: () => import('./views/StoreDetail.vue')
+    },
+    {
+      path: '/article/:articleId',
+      name: 'article-detail',
+      component: () => import('./views/ArticleDetail.vue')
+    },
+    {
+      path: '/not-found',
+      name: '404',
+      component: () => import('./views/Error404.vue')
     }
   ]
 })

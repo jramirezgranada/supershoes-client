@@ -32,6 +32,10 @@
             getStoreDetail(storeDetailUrl){
                 axios.get(storeDetailUrl).then(response => {
                     this.store = response.data.stores
+                }).catch(error => {
+                    if(error.response.status == 404){
+                        this.$router.push({name: "404"})
+                    }
                 })
             }
         }
