@@ -6,7 +6,6 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">Store</th>
         <th scope="col">Total in Shelf</th>
         <th scope="col">Total in Vault</th>
         <th scope="col">Actions</th>
@@ -17,7 +16,6 @@
         <th scope="row">{{ article.id }}</th>
         <td>{{ article.name }}</td>
         <td>{{ article.price }}</td>
-        <td>{{ article.store.name}}</td>
         <td>{{ article.total_in_shelf }}</td>
         <td>{{ article.total_in_vault }}</td>
         <td><router-link :to="{name: 'article-detail', params: {articleId: article.id}}" class="p-2 text-dark">Detail</router-link></td>
@@ -31,23 +29,23 @@
 import axios from 'axios'
 
 export default {
-  name: 'ArticlesComponent',
+  name: 'ArticlesStoreComponent',
   props: {
     msg: String
   },
   data() {
     return {
-      getArticlesUrl: 'http://supershoes.test/services/articles',
+      getArticlesStoreUrl: 'http://supershoes.test/services/articles/stores/' + this.$route.params.storeId,
       articles: [],
       pageNumber: 0
     }
   },
   mounted() {
-    this.getAllArticles(this.getArticlesUrl)
+    this.getAllArticlesStore(this.getArticlesStoreUrl)
   },
   methods: {
-    getAllArticles(getArticlesUrl){
-      axios.get(getArticlesUrl).then(response => {
+    getAllArticlesStore(getArticlesStoreUrl){
+      axios.get(getArticlesStoreUrl).then(response => {
         this.articles = response.data.articles
       })
     },
