@@ -11,25 +11,57 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      component: () => import('./views/Welcome.vue')
+    },
+    {
+      path: '/stores',
+      name: 'stores',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/stores/create',
+      name: 'create-store',
+      component: () => import('./views/CreateStore.vue')
+    },
+    {
+      path: '/stores/edit/:storeId',
+      name: 'edit-store',
+      component: () => import('./views/CreateStore.vue')
     },
     {
       path: '/articles/store/:storeId',
       name: 'articles-store',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import('./views/ArticlesStore.vue')
     },
     {
       path: '/articles',
       name: 'all-articles',
-      component: () => import(/* webpackChunkName: "about" */ './views/Articles.vue')
+      component: () => import('./views/Articles.vue')
+    },
+    {
+      path: '/articles/create',
+      name: 'create-article',
+      component: () => import('./views/CreateArticle.vue')
+    },
+    {
+      path: '/articles/edit/:articleId',
+      name: 'edit-article',
+      component: () => import('./views/CreateArticle.vue')
+    },
+    {
+      path: '/store/:storeId',
+      name: 'store-detail',
+      component: () => import('./views/StoreDetail.vue')
+    },
+    {
+      path: '/article/:articleId',
+      name: 'article-detail',
+      component: () => import('./views/ArticleDetail.vue')
+    },
+    {
+      path: '/not-found',
+      name: '404',
+      component: () => import('./views/Error404.vue')
     }
   ]
 })

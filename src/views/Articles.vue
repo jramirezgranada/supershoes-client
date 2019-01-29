@@ -1,5 +1,7 @@
 <template>
     <div class="articles">
+        <router-link :to="{name: 'create-article'}" class="btn btn-success">Create Article</router-link>
+        <div style="margin: 15px"></div>
         <ArticlesComponent/>
     </div>
 </template>
@@ -9,7 +11,7 @@
     import ArticlesComponent from '@/components/ArticlesComponent.vue'
 
     export default {
-        name: 'home',
+        name: 'articles-list',
         components: {
             ArticlesComponent
         }

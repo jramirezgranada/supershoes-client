@@ -12,7 +12,6 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">Store</th>
         <th scope="col">Total in Shelf</th>
         <th scope="col">Total in Vault</th>
         <th scope="col">Actions</th>
@@ -23,7 +22,6 @@
         <th scope="row">{{ article.id }}</th>
         <td>{{ article.name }}</td>
         <td>{{ article.price }}</td>
-        <td>{{ article.store.name}}</td>
         <td>{{ article.total_in_shelf }}</td>
         <td>{{ article.total_in_vault }}</td>
         <td>
@@ -37,39 +35,40 @@
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name: 'ArticlesComponent',
-    props: {
-      msg: String
+export default {
+  name: 'ArticlesStoreComponent',
+  props: {
+    msg: String
+  },
+  data() {
+    return {
+      getArticlesStoreUrl: 'http://127.0.0.1:8000/services/articles/stores/' + this.$route.params.storeId,
+      articles: [],
+      pageNumber: 0,
+      deleted: false,
+      message: ''
+    }
+  },
+  mounted() {
+    this.getAllArticlesStore(this.getArticlesStoreUrl)
+  },
+  methods: {
+    getAllArticlesStore(getArticlesStoreUrl){
+      axios.get(getArticlesStoreUrl).then(response => {
+        this.articles = response.data.articles
+      })
     },
-    data() {
-      return {
-        getArticlesUrl: 'http://127.0.0.1:8000/services/articles',
-        articles: [],
-        pageNumber: 0,
-        deleted: false,
-        message: ''
-      }
-    },
-    mounted() {
-      this.getAllArticles(this.getArticlesUrl)
-    },
-    methods: {
-      getAllArticles(getArticlesUrl){
-        axios.get(getArticlesUrl).then(response => {
-          this.articles = response.data.articles
-        })
-      },
-      deleteArticle(articleId){
-        let deleteArticleUrl = 'http://127.0.0.1:8000/services/articles/' + articleId
-        axios.delete(deleteArticleUrl).then(response => {
-          this.deleted = true
-          this.message = response.data.message
-          this.getAllArticles(this.getArticlesUrl)
-        })
-      }
+    deleteArticle(articleId){
+      let deleteArticleUrl = 'http://127.0.0.1:8000/services/articles/' + articleId
+      axios.delete(deleteArticleUrl).then(response => {
+        console.log(response)
+        this.deleted = true
+        this.message = response.data.message
+        this.getAllArticlesStore(this.getArticlesStoreUrl)
+      })
     }
   }
+}
 </script>
