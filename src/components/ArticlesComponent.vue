@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      getArticlesUrl: 'http://supershoes.test/services/articles',
+      getArticlesUrl: 'http://127.0.0.1:8000/services/articles',
       articles: [],
       pageNumber: 0
     }

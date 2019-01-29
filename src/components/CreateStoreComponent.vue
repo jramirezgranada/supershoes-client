@@ -43,7 +43,7 @@
             return {
                 name: '',
                 address: '',
-                createStoreUrl: 'http://supershoes.test/services/stores/create',
+                createStoreUrl: 'http://127.0.0.1:8000/services/stores',
                 successfulAlert: false,
                 showErrors: false,
                 errors: [],
@@ -73,7 +73,7 @@
                 };
 
                 if(this.edit){
-                    let updateStoreUrl = 'http://supershoes.test/services/stores/update/' + this.storeId
+                    let updateStoreUrl = 'http://127.0.0.1:8000/services/stores/' + this.storeId
                     axios.patch(updateStoreUrl, data, headers)
                         .then(response => {
                             console.log(response)
@@ -100,7 +100,7 @@
                 }
             },
             getStoreDetail(storeId){
-                let storeDetailUrl = 'http://supershoes.test/services/stores/' + storeId
+                let storeDetailUrl = 'http://127.0.0.1:8000/services/stores/' + storeId
 
                 axios.get(storeDetailUrl).then(response => {
                     this.store = response.data.stores

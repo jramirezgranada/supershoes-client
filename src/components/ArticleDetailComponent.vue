@@ -13,7 +13,8 @@
                 <br>
                 <div class="card">
                     <div class="card-header">
-                        {{ article.name }}
+                        {{ article.name }} |
+                        <router-link :to="{name: 'edit-article', params:{articleId: article.id}}" class="btn btn-success btn-sm">Edit Article</router-link>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{article.description}}</h5>
@@ -52,7 +53,7 @@
         props: {},
         data(){
             return {
-                getArticleDetailUrl: 'http://supershoes.test/services/articles/' + this.$route.params.articleId,
+                getArticleDetailUrl: 'http://127.0.0.1:8000/services/articles/' + this.$route.params.articleId,
                 article: []
             }
         },

@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      getStoresUrl: 'http://supershoes.test/services/stores',
+      getStoresUrl: 'http://127.0.0.1:8000/services/stores',
       stores: [],
       pageNumber: 0
     }

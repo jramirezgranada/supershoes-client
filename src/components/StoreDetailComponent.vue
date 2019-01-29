@@ -22,7 +22,7 @@
         props: {},
         data(){
             return {
-                getStoreDetailUrl: 'http://supershoes.test/services/stores/' + this.$route.params.storeId,
+                getStoreDetailUrl: 'http://127.0.0.1:8000/services/stores/' + this.$route.params.storeId,
                 store: []
             }
         },

@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      getArticlesStoreUrl: 'http://supershoes.test/services/articles/stores/' + this.$route.params.storeId,
+      getArticlesStoreUrl: 'http://127.0.0.1:8000/services/articles/stores/' + this.$route.params.storeId,
       articles: [],
       pageNumber: 0
     }
